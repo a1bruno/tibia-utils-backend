@@ -16,14 +16,14 @@ func splitEvenly(total Gold, n int) ([]Gold, error) {
 		return nil, ErrInvalidPartySize
 	}
 	quotient, rest := divFloor(int64(total), int64(n))
-	slices := make([]Gold, n)
+	shares := make([]Gold, n)
 
 	for i := 0; i < n; i++ {
-		slices[i] = Gold(quotient)
+		shares[i] = Gold(quotient)
 	}
-	for i := 0; i < int(rest); i++ {
-		slices[i] = slices[i] + Gold(1)
+	for i := range int(rest) {
+		shares[i] += 1
 	}
 
-	return slices, nil
+	return shares, nil
 }
